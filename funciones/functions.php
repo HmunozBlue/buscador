@@ -1,13 +1,13 @@
 <?php
 
-function bin_debug($var = ""){
+function debug($var = ""){
     print "<pre style='text-align: left!important'>";
     print_r($var);
     print "</pre>";
 }
 
 function header_view($data=""){
-    $viewHeader = "header.php";
+    $viewHeader = "funciones/header.php";
     require_once ($viewHeader);
 }
 
