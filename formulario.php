@@ -47,7 +47,7 @@ header_view();
                         <input type="text" class="form-control" name="PrimerApellido" placeholder="Primer apellido.." require>
                         <input type="text" class="form-control" name="SegundoApellido" placeholder="Segundo apellido..">
                     </div></br>
-                <!--Apellido Casada -->
+                <!--Apellido Casada Y Fecha de nacimiento -->
                 <label for="message-text" class="col-form-label">Apellido de Casada:</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                 <label for="message-text" class="col-form-label">Fecha de Nacimiento:</label>
                     <div class="input-group">
@@ -60,7 +60,7 @@ header_view();
                             <span class="input-group-text" id=""><i class="fas fa-calendar-alt"></i></span>
                         </div>
                         <input type="date" class="form-control" name="fecha">
-                    </div>
+                    </div></br>
                 <!--tipo sangre Medio de información y Género-->
                 <label for="message-text" class="col-form-label">Tipo de sangre:</label>&emsp;
                 <label for="message-text" class="col-form-label">Medio de información:</label>&emsp;&emsp;
@@ -97,7 +97,7 @@ header_view();
                             </div>
                         </div>
                     </div>
-                    <!--DPI-->
+                    <!--PAIS Y DPI-->
                     <label for="message-text" class="col-form-label">País:</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
                     <label for="message-text" class="col-form-label">DPI:</label>
                     <div class="input-group">
@@ -129,6 +129,20 @@ header_view();
                         </div>
                         <input type="number" class="form-control" name="celular">
                     </div>
+                    <!--TEMPLATE Y PASSWORD-->
+                    <label for="message-text" class="col-form-label">TEMPLATE:</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    <label for="message-text" class="col-form-label">KEY:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id=""><i class="fas fa-mail-bulk"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="template" placeholder="SG" readonly required>
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id=""><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" name="password" placeholder="1234" readonly require>
+                        </div>
             </div><!--MODAL BODY -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
