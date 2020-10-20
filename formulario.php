@@ -29,11 +29,110 @@ header_view();
       </div>
       <form id="CrearUsuario" action="">
             <div class="modal-body">
-                ...
-            </div>
+                <!--Nombres-->
+                <label for="message-text" class="col-form-label">Nombres:</label></br>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id=""><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="primerNombre" placeholder="Primer nombre.." require>
+                        <input type="text" class="form-control" name="segundoNombre" placeholder="Segundo nombre..">
+                    </div>
+                <!--Apellidos-->
+                <label for="message-text" class="col-form-label">Apellidos:</label></br>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id=""><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="PrimerApellido" placeholder="Primer apellido.." require>
+                        <input type="text" class="form-control" name="SegundoApellido" placeholder="Segundo apellido..">
+                    </div></br>
+                <!--Apellido Casada -->
+                <label for="message-text" class="col-form-label">Apellido de Casada:</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <label for="message-text" class="col-form-label">Fecha de Nacimiento:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id=""><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="apellidoCasada" placeholder="Apellido Casada..">
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id=""><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="date" class="form-control" name="fecha">
+                    </div>
+                <!--tipo sangre Medio de información y Género-->
+                <label for="message-text" class="col-form-label">Tipo de sangre:</label>&emsp;
+                <label for="message-text" class="col-form-label">Medio de información:</label>&emsp;&emsp;
+                <label for="message-text" class="col-form-label">Género:</label>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-tint"></i></span>
+                                    <select style="width:120px" class="form-control" id="blood">
+                                        <option value="1" selected>O+</option>
+                                        <option value="2">O-</option>
+                                        <option value="3">A+</option>
+                                        <option value="4">A-</option>
+                                        <option value="5">B+</option>
+                                        <option value="6">B-</option>
+                                        <option value="5">AB+</option>
+                                        <option value="6">AB-</option>
+                                    </select>
+                                    &emsp;<span class="input-group-text" ><i class="fas fa-info-circle"></i></span>
+                                    <select style="width:120px" class="form-control" id="information">
+                                        <option value="1" selected>Web</option>
+                                        <option value="2">Call Center</option>
+                                        <option value="3">Familiar</option>
+                                        <option value="4">Redes Sociales</option>
+                                        <option value="5">Otros</option>
+                                    </select>
+                                    &emsp;<span class="input-group-text" ><i class="fas fa-venus-mars"></i></span>
+                                    <select style="width:105px" class="form-control" id="information">
+                                        <option value="M" selected>Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--DPI-->
+                    <label for="message-text" class="col-form-label">País:</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
+                    <label for="message-text" class="col-form-label">DPI:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-globe-americas"></i></span>
+                        </div>
+                        <select class="form-control" id="pais">
+                                <option value="1" selected>Guatemala</option>
+                                <option value="15">Costa Rica</option>
+                        </select>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-id-card"></i></span>
+                        </div>
+                        <input type="number" class="form-control" name="dpi" placeholder="Sin espacios ni guiónes">
+                    </div>
+                    <!--CORREO ELECTRONICO-->
+                    <label for="message-text" class="col-form-label">Correo electrónico:</label></br>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-at"></i></span>
+                        </div>
+                        <input type="email" class="form-control" name="mail">
+                    </div>
+                    <!--CELULAR-->
+                    <label for="message-text" class="col-form-label">Celular:</label></br>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                        </div>
+                        <input type="number" class="form-control" name="celular">
+                    </div>
+            </div><!--MODAL BODY -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
             </div>
       </form>
     </div>
