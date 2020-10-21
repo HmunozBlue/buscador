@@ -1,33 +1,32 @@
 <?php
 require_once 'funciones/functions.php';
 
+//Celular
 $celular = (isset($_POST['telefono'])) ? $_POST['telefono'] : '';
+$intTel = $celular; //50974983 59783316 32717730
+
 //Refresca el TOKEN oAuth
 $arrTokenOauth = wsRefreshTokenOauth();
 $arrTokenOauth = json_decode($arrTokenOauth, true);
 $strTokenOauth = (isset($arrTokenOauth["data"]["accessToken"])) ? $arrTokenOauth["data"]["accessToken"] : '';
-$intTel = $celular; //50974983 59783316 32717730
 
 //trae paciente
 $arrPatient = get_patient($strTokenOauth, $intTel);
 
-//debug($arrTokenOauth);
-//debug($strTokenOauth);
-
-//debug($arrPatient);
+//Generador de pass
+$arrPass = passGenerator();
 
 header_view();
 ?>
-
 <body class="container">
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header d-block">
         <h5 class="modal-title text-center"><strong>Crear Usuario</strong></h5>
       </div>
-      <form id="CrearUsuario" action="">
+      <form action="UserCreado.php" name="formulario" method="post">
             <div class="modal-body">
                 <!--Nombres-->
                 <label for="message-text" class="col-form-label">Nombres:</label></br>
@@ -35,7 +34,7 @@ header_view();
                         <div class="input-group-prepend">
                             <span class="input-group-text" id=""><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="primerNombre" placeholder="Primer nombre.." require>
+                        <input type="text" class="form-control" name="primerNombre" placeholder="Primer nombre.." required>
                         <input type="text" class="form-control" name="segundoNombre" placeholder="Segundo nombre..">
                     </div>
                 <!--Apellidos-->
@@ -44,8 +43,8 @@ header_view();
                         <div class="input-group-prepend">
                             <span class="input-group-text" id=""><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" name="PrimerApellido" placeholder="Primer apellido.." require>
-                        <input type="text" class="form-control" name="SegundoApellido" placeholder="Segundo apellido..">
+                        <input type="text" class="form-control" name="primerApellido" placeholder="Primer apellido.." required>
+                        <input type="text" class="form-control" name="segundoApellido" placeholder="Segundo apellido..">
                     </div></br>
                 <!--Apellido Casada Y Fecha de nacimiento -->
                 <label for="message-text" class="col-form-label">Apellido de Casada:</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -70,7 +69,7 @@ header_view();
                             <div class="form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-tint"></i></span>
-                                    <select style="width:120px" class="form-control" id="blood">
+                                    <select style="width:120px" class="form-control" id="blood" name="sangre">
                                         <option value="1" selected>O+</option>
                                         <option value="2">O-</option>
                                         <option value="3">A+</option>
@@ -81,7 +80,7 @@ header_view();
                                         <option value="6">AB-</option>
                                     </select>
                                     &emsp;<span class="input-group-text" ><i class="fas fa-info-circle"></i></span>
-                                    <select style="width:120px" class="form-control" id="information">
+                                    <select style="width:120px" class="form-control" id="information" name="informacion">
                                         <option value="1" selected>Web</option>
                                         <option value="2">Call Center</option>
                                         <option value="3">Familiar</option>
@@ -89,7 +88,7 @@ header_view();
                                         <option value="5">Otros</option>
                                     </select>
                                     &emsp;<span class="input-group-text" ><i class="fas fa-venus-mars"></i></span>
-                                    <select style="width:105px" class="form-control" id="information">
+                                    <select style="width:105px" class="form-control" id="genere" name="genero">
                                         <option value="M" selected>Masculino</option>
                                         <option value="F">Femenino</option>
                                     </select>
@@ -104,14 +103,14 @@ header_view();
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-globe-americas"></i></span>
                         </div>
-                        <select class="form-control" id="pais">
+                        <select class="form-control" id="country" name="pais">
                                 <option value="1" selected>Guatemala</option>
                                 <option value="15">Costa Rica</option>
                         </select>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="far fa-id-card"></i></span>
                         </div>
-                        <input type="number" class="form-control" name="dpi" placeholder="Sin espacios ni guiónes">
+                        <input type="number" class="form-control" name="dpi" placeholder="Sin espacios ni guiónes" required>
                     </div>
                     <!--CORREO ELECTRONICO-->
                     <label for="message-text" class="col-form-label">Correo electrónico:</label></br>
@@ -127,26 +126,18 @@ header_view();
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                         </div>
-                        <input type="number" class="form-control" name="celular">
+                        <input type="number" class="form-control" name="celular" required>
                     </div>
                     <!--TEMPLATE Y PASSWORD-->
-                    <label for="message-text" class="col-form-label">TEMPLATE:</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    <label for="message-text" class="col-form-label">KEY:</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id=""><i class="fas fa-mail-bulk"></i></span>
-                            </div>
-                            <input type="text" class="form-control" name="template" placeholder="SG" readonly required>
+                            <input type="hidden" class="form-control" name="template" value="SG" readonly required>
 
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id=""><i class="fas fa-key"></i></span>
-                            </div>
-                            <input type="password" class="form-control" name="password" placeholder="1234" readonly require>
+                            <input type="hidden" class="form-control" name="password" value="<?=$arrPass?>" readonly required>
                         </div>
             </div><!--MODAL BODY -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
       </form>
     </div>
@@ -171,6 +162,7 @@ header_view();
             if (is_array($arrPatient)) {
                 if ($arrPatient > 0) {
                     ?>
+                        <a href="index.php"><i class="fas fa-arrow-left"></i> Regresar</a></br></br>
                         <table id="tblPacienteEncontrado" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
